@@ -1,4 +1,5 @@
-	#include<stdio.h>
+#include<stdio.h>
+#include<stdlib.h>
 #define size 10
 
 int q[size];
@@ -14,7 +15,7 @@ void enqueue()
     }
     else
     {
-        printf("Enter the value to insert\n");
+        printf("Enter the value to insert:");
         scanf("%d",&value);
         q[rear]=value;
         rear=(rear+1)%size;
@@ -30,6 +31,7 @@ void dequeue()
     }
     else
     {
+        printf("Dequeued element is %d",q[front]);
         front=(front+1)%size;
         count--;
     }
@@ -46,20 +48,20 @@ void display()
     {
         if(rear>front)
         {
-            for(i=front;i<=rear;i++)
+            for(i=front;i<rear;i++)
             {
-                printf("%d\n",q[i]);
+                printf("%d ",q[i]);
             }
         }
         if(rear<front)
         {
             for(i=front;i<size;i++)
             {
-                printf("%d\n",q[i]);
+                printf("%d ",q[i]);
             }
             for(i=0;i<rear;i++)
             {
-                printf("%d\n",q[i]);
+                printf("%d ",q[i]);
             }
         }
     }
@@ -67,7 +69,7 @@ void display()
     {
         for(i=front;i<size;i++)
         {
-            printf("%d\n",q[i]);
+            printf("%d ",q[i]);
         }
     }
     else
@@ -79,9 +81,10 @@ void display()
 int main()
 {
     int choice=0;
-    while(choice!=3)
+    while(1)
     {
-        printf("Enter the choice");
+        printf("\n1.Enqueue\n2.Dequeue\n3.Displat\n4.Exit\n");
+        printf("Enter the choice:");
         scanf("%d",&choice);
         switch(choice)
         {
@@ -91,6 +94,9 @@ int main()
                     break;
             case 3: display();
                     break;
+            case 4:printf("Program exitted");
+            exit(1);
+            break;
         }
     }
 }
